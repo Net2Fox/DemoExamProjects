@@ -23,6 +23,7 @@ namespace _619_Gorlanov
         public MainWindow()
         {
             InitializeComponent();
+            // Тут крч изменения !
         }
     }
 }
