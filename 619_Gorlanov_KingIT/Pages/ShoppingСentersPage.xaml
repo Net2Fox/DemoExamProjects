@@ -1,0 +1,48 @@
+﻿<Page x:Class="_619_Gorlanov_KingIT.Pages.ShoppingСentersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:_619_Gorlanov_KingIT.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Торговые центры" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" MinHeight="50" MaxHeight="50"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="10*" MinHeight="50" MaxHeight="50"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="CreateSCButton" Content="Создать ТЦ" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" Height="30" FontSize="14" Width="100" Click="CreateSCButton_Click"/>
+        <Button x:Name="EditSCButton" Content="Редактировать ТЦ" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Grid.Row="2" Height="30" FontSize="14" Width="145" Click="EditSCButton_Click"/>
+        <ListView x:Name="SCListView" Grid.Row="1" FontSize="14">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding StatusSC.Name}"/>
+                    <GridViewColumn Header="Количество павильонов" DisplayMemberBinding="{Binding PavilionsCount}"/>
+                    <GridViewColumn Header="Город" DisplayMemberBinding="{Binding City.Name}"/>
+                    <GridViewColumn Header="Стоимость постройки" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="Этажность" DisplayMemberBinding="{Binding Floors}"/>
+                    <GridViewColumn Header="Коэффициент добавочной стоимости" DisplayMemberBinding="{Binding ValueAddedRatio}"/>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap" Text="Фильтровать по статусу:" Width="165" FontSize="14" Height="18" />
+            <ComboBox x:Name="StatusComboBox" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="150" Height="30" FontSize="14" VerticalContentAlignment="Center" SelectionChanged="StatusComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <Button x:Name="DeleteSCButton" Content="Удалить ТЦ" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,160,0" Grid.Row="2" Height="30" FontSize="14" Width="100" Click="DeleteSCButton_Click"/>
+        <Button x:Name="OpenPavilionListButton" Content="Список павильонов" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Grid.Row="2" Height="30" FontSize="14" Width="149" Click="OpenPavilionListButton_Click"/>
+
+
+    </Grid>
+</Page>
