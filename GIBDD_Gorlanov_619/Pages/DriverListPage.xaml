@@ -40,7 +40,7 @@
                                 </TextBlock.Text>
                             </TextBlock>
                             <TextBlock Text="{Binding Path=Address, StringFormat=Адрес регистрации: {0}}"/>
-                            <TextBlock Text="{Binding Path=AddressLife, StringFormat=Адрес проживания: {0}, TargetNullValue={}}"/>
+                            <TextBlock Text="{Binding Path=AddressLife, StringFormat=Адрес проживания: {0}}"/>
                             <TextBlock Text="{Binding Path=Company.Name, StringFormat=Место работы: {0}}"/>
                             <TextBlock Text="{Binding Path=JobName.Name, StringFormat=Должность: {0}}"/>
                             <TextBlock Text="{Binding Path=Phone, StringFormat=Номер телефона: {0}}"/>
