@@ -6,9 +6,50 @@
       xmlns:local="clr-namespace:GIBDD_Gorlanov_619.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DriverListPage">
+      Title="DriverListPage" Loaded="Page_Loaded">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding Drivers}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <StackPanel>
+                            <Image Source="{Binding Photo}" Width="200" Height="200"/>
+                        </StackPanel>
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="ФИО: {0} {1} {2}">
+                                        <Binding Path="Surname"/>
+                                        <Binding Path="Name"/>
+                                        <Binding Path="Patronymic"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="Паспорт: {0} {1}">
+                                        <Binding Path="PassportSerial"/>
+                                        <Binding Path="PassportNumber"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Text="{Binding Path=Address, StringFormat=Адрес регистрации: {0}}"/>
+                            <TextBlock Text="{Binding Path=AddressLife, StringFormat=Адрес проживания: {0}, TargetNullValue={}}"/>
+                            <TextBlock Text="{Binding Path=Company.Name, StringFormat=Место работы: {0}}"/>
+                            <TextBlock Text="{Binding Path=JobName.Name, StringFormat=Должность: {0}}"/>
+                            <TextBlock Text="{Binding Path=Phone, StringFormat=Номер телефона: {0}}"/>
+                            <TextBlock Text="{Binding Path=Email, StringFormat=Email: {0}}"/>
+                            <TextBlock Text="{Binding Path=Description, StringFormat=Замечание: {0}, TargetNullValue={}}"/>
+                        </StackPanel>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

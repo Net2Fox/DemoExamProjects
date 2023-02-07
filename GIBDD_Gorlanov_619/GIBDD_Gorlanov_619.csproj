@@ -75,7 +75,7 @@
     <Compile Include="Category.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="CodeWindow.xaml.cs">
+    <Compile Include="Windows\CodeWindow.xaml.cs">
       <DependentUpon>CodeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Company.cs">
@@ -135,7 +135,11 @@
     <Compile Include="TypeOfDrive.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Page Include="CodeWindow.xaml">
+    <Page Include="Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CodeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

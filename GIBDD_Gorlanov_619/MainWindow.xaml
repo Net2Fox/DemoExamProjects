@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GIBDD_Gorlanov_619"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Госавтоинспекция" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="BackButton" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Height="30" Content="Назад" Margin="10,0,0,0" Click="BackButton_Click"/>
-        <Button x:Name="ExitButton" HorizontalAlignment="Right" VerticalAlignment="Center"  Width="50" Height="30" Content="Выйти" Margin="0,0,10,0" Click="ExitButton_Click"/>
+        <Button x:Name="BackButton" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Content="Назад" Margin="10,0,0,0" Click="BackButton_Click"/>
+        <Button x:Name="ExitButton" HorizontalAlignment="Right" VerticalAlignment="Center"  Width="50" Content="Выйти" Margin="0,0,10,0" Click="ExitButton_Click"/>
         <Frame x:Name="MainFrame" Grid.Row="1" Source="Pages/LoginPage.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

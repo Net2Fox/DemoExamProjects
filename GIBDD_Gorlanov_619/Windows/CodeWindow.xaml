@@ -1,11 +1,11 @@
-﻿<Window x:Class="GIBDD_Gorlanov_619.CodeWindow"
+﻿<Window x:Class="GIBDD_Gorlanov_619.Windows.CodeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GIBDD_Gorlanov_619"
         mc:Ignorable="d"
-        Title="CodeWindow" Height="200" Width="200">
+        Title="Двухфакторная аутентификация" Height="200" Width="200" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <StackPanel VerticalAlignment="Center">
             <TextBlock Text="Введите код для входа:" TextAlignment="Center"/>

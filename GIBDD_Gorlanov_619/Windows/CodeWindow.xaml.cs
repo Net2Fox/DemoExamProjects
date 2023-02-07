@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GIBDD_Gorlanov_619.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,10 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GIBDD_Gorlanov_619
+namespace GIBDD_Gorlanov_619.Windows
 {
     /// <summary>
     /// Логика взаимодействия для CodeWindow.xaml
@@ -30,7 +32,14 @@ namespace GIBDD_Gorlanov_619
         {
             if(CodeTextBox.Text == Code)
             {
-
+                this.Owner.Focus();
+                this.Owner.IsEnabled = true;
+                this.DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Неверно, попробуйте ещё раз!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
