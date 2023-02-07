@@ -45,7 +45,7 @@
                             <TextBlock Text="{Binding Path=JobName.Name, StringFormat=Должность: {0}}"/>
                             <TextBlock Text="{Binding Path=Phone, StringFormat=Номер телефона: {0}}"/>
                             <TextBlock Text="{Binding Path=Email, StringFormat=Email: {0}}"/>
-                            <TextBlock Text="{Binding Path=Description, StringFormat=Замечание: {0}, TargetNullValue={}}"/>
+                            <TextBlock Text="{Binding Path=Description, StringFormat=Замечание: {0}, TargetNullValue={}}" TextWrapping="Wrap"/>
                         </StackPanel>
                     </WrapPanel>
                 </DataTemplate>
