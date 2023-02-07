@@ -8,13 +8,13 @@ namespace GIBDD_Gorlanov_619
 {
     internal class Core
     {
-        private static GIBDDEntities _context;
+        private static Entities _context;
 
-        public static GIBDDEntities GetContext()
+        public static Entities GetContext()
         {
             if(_context == null)
             {
-                _context = new GIBDDEntities();
+                _context = new Entities();
             }
             return _context;
         }

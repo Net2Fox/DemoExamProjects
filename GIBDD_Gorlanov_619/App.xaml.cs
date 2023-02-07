@@ -13,5 +13,6 @@ namespace GIBDD_Gorlanov_619
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }

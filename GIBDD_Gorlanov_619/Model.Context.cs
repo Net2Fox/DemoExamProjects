@@ -13,10 +13,10 @@ namespace GIBDD_Gorlanov_619
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class GIBDDEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public GIBDDEntities()
-            : base("name=GIBDDEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -32,11 +32,11 @@ namespace GIBDD_Gorlanov_619
         public virtual DbSet<Driver> Driver { get; set; }
         public virtual DbSet<DriverCar> DriverCar { get; set; }
         public virtual DbSet<DriverLicense> DriverLicense { get; set; }
+        public virtual DbSet<Inspector> Inspector { get; set; }
         public virtual DbSet<JobName> JobName { get; set; }
         public virtual DbSet<License> License { get; set; }
         public virtual DbSet<LicenseCategory> LicenseCategory { get; set; }
         public virtual DbSet<Manufacturer> Manufacturer { get; set; }
-        public virtual DbSet<ManufacturerCarModel> ManufacturerCarModel { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeOfDrive> TypeOfDrive { get; set; }

@@ -17,13 +17,13 @@ namespace GIBDD_Gorlanov_619
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Manufacturer()
         {
-            this.ManufacturerCarModel = new HashSet<ManufacturerCarModel>();
+            this.Car = new HashSet<Car>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ManufacturerCarModel> ManufacturerCarModel { get; set; }
+        public virtual ICollection<Car> Car { get; set; }
     }
 }

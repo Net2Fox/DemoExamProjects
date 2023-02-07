@@ -31,6 +31,7 @@ namespace GIBDD_Gorlanov_619
         public int TypeOfDriveID { get; set; }
     
         public virtual CarModel CarModel { get; set; }
+        public virtual Manufacturer Manufacturer { get; set; }
         public virtual TypeOfDrive TypeOfDrive { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DriverCar> DriverCar { get; set; }
