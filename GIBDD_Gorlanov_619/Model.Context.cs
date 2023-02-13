@@ -37,6 +37,7 @@ namespace GIBDD_Gorlanov_619
         public virtual DbSet<License> License { get; set; }
         public virtual DbSet<LicenseCategory> LicenseCategory { get; set; }
         public virtual DbSet<Manufacturer> Manufacturer { get; set; }
+        public virtual DbSet<ManufacturerCarModel> ManufacturerCarModel { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeOfDrive> TypeOfDrive { get; set; }

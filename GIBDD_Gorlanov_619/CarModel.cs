@@ -18,6 +18,7 @@ namespace GIBDD_Gorlanov_619
         public CarModel()
         {
             this.Car = new HashSet<Car>();
+            this.ManufacturerCarModel = new HashSet<ManufacturerCarModel>();
         }
     
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace GIBDD_Gorlanov_619
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Car> Car { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ManufacturerCarModel> ManufacturerCarModel { get; set; }
     }
 }

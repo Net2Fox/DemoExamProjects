@@ -36,6 +36,7 @@ namespace GIBDD_Gorlanov_619
         public string Email { get; set; }
         public string Photo { get; set; }
         public string Description { get; set; }
+        public bool IsArchive { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual JobName JobName { get; set; }

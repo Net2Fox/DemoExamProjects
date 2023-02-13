@@ -1,0 +1,90 @@
+﻿<Page x:Class="GIBDD_Gorlanov_619.Pages.AddDriverPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GIBDD_Gorlanov_619.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddDriverPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
+            <StackPanel Margin="10,0,0,0">
+                <TextBlock Text="Фамилия*:" Margin="0,10,0,0"/>
+                <TextBox Name="SurnameTextBox" Text="{Binding Driver.Surname}"/>
+                <TextBlock Text="Имя*:" Margin="0,10,0,0"/>
+                <TextBox Name="NameTextBox" Text="{Binding Driver.Name}"/>
+                <TextBlock Text="Отчество*:" Margin="0,10,0,0"/>
+                <TextBox Name="PatronymicTextBox" Text="{Binding Driver.Patronymic}"/>
+                <TextBlock Text="Паспорт (серия)*:" Margin="0,10,0,0"/>
+                <TextBox Name="PassportSerialTextBox" Text="{Binding Driver.PassportSerial}"/>
+                <TextBlock Text="Паспорт (номер)*:" Margin="0,10,0,0"/>
+                <TextBox Name="PassportNumberTextBox" Text="{Binding Driver.PassportNumber}"/>
+                <TextBlock Text="Адрес регистрации*:" Margin="0,10,0,0"/>
+                <TextBox Name="AddressTextBox" Text="{Binding Driver.Address}"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBlock Text="Адрес проживания*:" Margin="0,10,0,0"/>
+                <TextBox Name="AddressLifeTextBox" Text="{Binding Driver.AddressLife}"/>
+                <TextBlock Text="Место работы:" Margin="0,10,0,0"/>
+                <ComboBox Name="CompanyTextBox" ItemsSource="{Binding Companies}" SelectedItem="{Binding Driver.Company}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Должность:" Margin="0,10,0,0"/>
+                <ComboBox Name="JobNameTextBox" ItemsSource="{Binding JobNames}" SelectedItem="{Binding Driver.JobName}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Мобильный телефон*:" Margin="0,10,0,0"/>
+                <TextBox Name="PhoneNumberTextBox" Text="{Binding Driver.Phone}"/>
+                <TextBlock Text="Email*:" Margin="0,10,0,0"/>
+                <TextBox Name="EmailTextBox" Text="{Binding Driver.Email}"/>
+                <TextBlock Text="Замечание:" Margin="0,10,0,0"/>
+                <TextBox Name="DescriptionTextBox" Text="{Binding Driver.Description}"/>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0">
+                <TextBlock Text="Фотография:" Margin="0,10,0,0"/>
+                <ComboBox Name="PhotoTextBox">
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+        <Button x:Name="AddButton" Grid.Row="1" HorizontalAlignment="Center" Click="AddButton_Click">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEdit}" Value="True">
+                            <Setter Property="Content" Value="Сохранить"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsEdit}" Value="False">
+                            <Setter Property="Content" Value="Добавить"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="AdditionalInfoButton" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0" Content="Посмотреть доп. информацию" Click="AdditionalInfoButton_Click">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEdit}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+    </Grid>
+</Page>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Gorlanov_GIBDDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище GIBDD_Gorlanov_619Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="ID" />
@@ -57,8 +57,9 @@
           <Property Name="JobID" Type="int" />
           <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Photo" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="250" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsArchive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="DriverCar">
           <Key>
@@ -117,6 +118,14 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ManufacturerCarModel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarModelID" Type="int" Nullable="false" />
+          <Property Name="ManufacturerID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -286,7 +295,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище Gorlanov_GIBDDModelContainer">
+        <Association Name="FK_ManufacturerCarModel_CarModel">
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+          <End Role="ManufacturerCarModel" Type="Self.ManufacturerCarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManufacturerCarModel">
+              <PropertyRef Name="CarModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManufacturerCarModel_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="ManufacturerCarModel" Type="Self.ManufacturerCarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManufacturerCarModel">
+              <PropertyRef Name="ManufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище GIBDD_Gorlanov_619ModelContainer">
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -299,6 +332,7 @@
           <EntitySet Name="License" EntityType="Self.License" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenseCategory" EntityType="Self.LicenseCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManufacturerCarModel" EntityType="Self.ManufacturerCarModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" Schema="dbo" store:Type="Tables" />
@@ -350,12 +384,20 @@
             <End Role="License" EntitySet="License" />
             <End Role="LicenseCategory" EntitySet="LicenseCategory" />
           </AssociationSet>
+          <AssociationSet Name="FK_ManufacturerCarModel_CarModel" Association="Self.FK_ManufacturerCarModel_CarModel">
+            <End Role="CarModel" EntitySet="CarModel" />
+            <End Role="ManufacturerCarModel" EntitySet="ManufacturerCarModel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManufacturerCarModel_Manufacturer" Association="Self.FK_ManufacturerCarModel_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="ManufacturerCarModel" EntitySet="ManufacturerCarModel" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Gorlanov_GIBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="GIBDD_Gorlanov_619Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="ID" />
@@ -381,6 +423,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Self.FK_Car_CarModel" FromRole="CarModel" ToRole="Car" />
+          <NavigationProperty Name="ManufacturerCarModel" Relationship="Self.FK_ManufacturerCarModel_CarModel" FromRole="CarModel" ToRole="ManufacturerCarModel" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -415,8 +458,9 @@
           <Property Name="JobID" Type="Int32" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsArchive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="Self.FK_Driver_Company" FromRole="Driver" ToRole="Company" />
           <NavigationProperty Name="JobName" Relationship="Self.FK_Driver_JobName" FromRole="Driver" ToRole="JobName" />
           <NavigationProperty Name="DriverCar" Relationship="Self.FK_DriverCar_Driver" FromRole="Driver" ToRole="DriverCar" />
@@ -490,6 +534,17 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Self.FK_Car_Manufacturer" FromRole="Manufacturer" ToRole="Car" />
+          <NavigationProperty Name="ManufacturerCarModel" Relationship="Self.FK_ManufacturerCarModel_Manufacturer" FromRole="Manufacturer" ToRole="ManufacturerCarModel" />
+        </EntityType>
+        <EntityType Name="ManufacturerCarModel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarModelID" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CarModel" Relationship="Self.FK_ManufacturerCarModel_CarModel" FromRole="ManufacturerCarModel" ToRole="CarModel" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_ManufacturerCarModel_Manufacturer" FromRole="ManufacturerCarModel" ToRole="Manufacturer" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -562,6 +617,18 @@
             </Principal>
             <Dependent Role="DriverCar">
               <PropertyRef Name="CarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManufacturerCarModel_CarModel">
+          <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
+          <End Role="ManufacturerCarModel" Type="Self.ManufacturerCarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarModel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManufacturerCarModel">
+              <PropertyRef Name="CarModelID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -661,6 +728,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ManufacturerCarModel_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="ManufacturerCarModel" Type="Self.ManufacturerCarModel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ManufacturerCarModel">
+              <PropertyRef Name="ManufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Car" EntityType="Self.Car" />
           <EntitySet Name="CarModel" EntityType="Self.CarModel" />
@@ -674,6 +753,7 @@
           <EntitySet Name="License" EntityType="Self.License" />
           <EntitySet Name="LicenseCategory" EntityType="Self.LicenseCategory" />
           <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
+          <EntitySet Name="ManufacturerCarModel" EntityType="Self.ManufacturerCarModel" />
           <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TypeOfDrive" EntityType="Self.TypeOfDrive" />
@@ -692,6 +772,10 @@
           <AssociationSet Name="FK_DriverCar_Car" Association="Self.FK_DriverCar_Car">
             <End Role="Car" EntitySet="Car" />
             <End Role="DriverCar" EntitySet="DriverCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManufacturerCarModel_CarModel" Association="Self.FK_ManufacturerCarModel_CarModel">
+            <End Role="CarModel" EntitySet="CarModel" />
+            <End Role="ManufacturerCarModel" EntitySet="ManufacturerCarModel" />
           </AssociationSet>
           <AssociationSet Name="FK_LicenseCategory_Category" Association="Self.FK_LicenseCategory_Category">
             <End Role="Category" EntitySet="Category" />
@@ -725,15 +809,19 @@
             <End Role="License" EntitySet="License" />
             <End Role="LicenseCategory" EntitySet="LicenseCategory" />
           </AssociationSet>
+          <AssociationSet Name="FK_ManufacturerCarModel_Manufacturer" Association="Self.FK_ManufacturerCarModel_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="ManufacturerCarModel" EntitySet="ManufacturerCarModel" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище Gorlanov_GIBDDModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GIBDD_Gorlanov_619ModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Car">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Car">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.Car">
               <MappingFragment StoreEntitySet="Car">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="VIN" ColumnName="VIN" />
@@ -748,7 +836,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CarModel">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.CarModel">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.CarModel">
               <MappingFragment StoreEntitySet="CarModel">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -756,7 +844,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Category">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -764,7 +852,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Company">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Company">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -772,7 +860,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Driver">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Driver">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.Driver">
               <MappingFragment StoreEntitySet="Driver">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -789,11 +877,12 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsArchive" ColumnName="IsArchive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DriverCar">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.DriverCar">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.DriverCar">
               <MappingFragment StoreEntitySet="DriverCar">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DriverID" ColumnName="DriverID" />
@@ -802,7 +891,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DriverLicense">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.DriverLicense">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.DriverLicense">
               <MappingFragment StoreEntitySet="DriverLicense">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DriverID" ColumnName="DriverID" />
@@ -811,7 +900,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inspector">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Inspector">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.Inspector">
               <MappingFragment StoreEntitySet="Inspector">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -821,7 +910,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobName">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.JobName">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.JobName">
               <MappingFragment StoreEntitySet="JobName">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -829,7 +918,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="License">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.License">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.License">
               <MappingFragment StoreEntitySet="License">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LicenseDate" ColumnName="LicenseDate" />
@@ -841,7 +930,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LicenseCategory">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.LicenseCategory">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.LicenseCategory">
               <MappingFragment StoreEntitySet="LicenseCategory">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
@@ -850,15 +939,24 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manufacturer">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Manufacturer">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.Manufacturer">
               <MappingFragment StoreEntitySet="Manufacturer">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ManufacturerCarModel">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.ManufacturerCarModel">
+              <MappingFragment StoreEntitySet="ManufacturerCarModel">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CarModelID" ColumnName="CarModelID" />
+                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Status">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -866,7 +964,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.sysdiagrams">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -877,7 +975,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfDrive">
-            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.TypeOfDrive">
+            <EntityTypeMapping TypeName="GIBDD_Gorlanov_619Model.TypeOfDrive">
               <MappingFragment StoreEntitySet="TypeOfDrive">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

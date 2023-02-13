@@ -13,12 +13,12 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Drivers}">
+        <ListView x:Name="DriverListView" ItemsSource="{Binding Drivers}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <StackPanel>
-                            <Image Source="{Binding Photo}" Width="200" Height="200"/>
+                        <StackPanel VerticalAlignment="Center">
+                            <Image Source="{Binding Photo}" Width="100" Height="100"/>
                         </StackPanel>
                         <StackPanel Margin="10,0,0,0">
                             <TextBlock>
@@ -30,7 +30,6 @@
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
-
                             <TextBlock>
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="Паспорт: {0} {1}">
@@ -51,5 +50,37 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button x:Name="AddDriverButton" Grid.Row="1" Content="Добавить водителя" HorizontalAlignment="Left" Margin="10,0,0,0" Click="AddDriverButton_Click"/>
+            <Button x:Name="EditDriverButton" Grid.Row="1" Content="Редактировать водителя" HorizontalAlignment="Left" Margin="10,0,0,0" Click="EditDriverButton_Click"/>
+            <Button x:Name="ArchiveDriverButton" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0" Click="ArchiveDriverButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsArchive}" Value="False">
+                                <Setter Property="Content" Value="Посмотреть архив"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsArchive}" Value="True">
+                                <Setter Property="Content" Value="Посмотреть водителей"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+        <Button x:Name="DeleteDriverButton" Grid.Row="1" Content="Удалить водителя" HorizontalAlignment="Right" Margin="0,0,10,0" Click="DeleteDriverButton_Click">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsArchive}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsArchive}" Value="False">
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Page>
