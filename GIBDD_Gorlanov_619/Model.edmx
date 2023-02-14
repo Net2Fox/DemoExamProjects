@@ -69,14 +69,6 @@
           <Property Name="DriverID" Type="int" Nullable="false" />
           <Property Name="CarID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="DriverLicense">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DriverID" Type="int" Nullable="false" />
-          <Property Name="LicenseID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Inspector">
           <Key>
             <PropertyRef Name="ID" />
@@ -103,6 +95,7 @@
           <Property Name="LicenceSeries" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LicenceNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="DriverID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LicenseCategory">
           <Key>
@@ -111,6 +104,15 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LicenseID" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LicenseHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LicenseID" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
@@ -235,27 +237,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DriverLicense_Driver">
+        <Association Name="FK_License_Driver">
           <End Role="Driver" Type="Self.Driver" Multiplicity="1" />
-          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
+          <End Role="License" Type="Self.License" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Driver">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="DriverLicense">
+            <Dependent Role="License">
               <PropertyRef Name="DriverID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DriverLicense_License">
-          <End Role="License" Type="Self.License" Multiplicity="1" />
-          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="License">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DriverLicense">
-              <PropertyRef Name="LicenseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -295,6 +285,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LicenseHistory_License">
+          <End Role="License" Type="Self.License" Multiplicity="1" />
+          <End Role="LicenseHistory" Type="Self.LicenseHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="License">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LicenseHistory">
+              <PropertyRef Name="LicenseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LicenseHistory_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="LicenseHistory" Type="Self.LicenseHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LicenseHistory">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ManufacturerCarModel_CarModel">
           <End Role="CarModel" Type="Self.CarModel" Multiplicity="1" />
           <End Role="ManufacturerCarModel" Type="Self.ManufacturerCarModel" Multiplicity="*" />
@@ -326,11 +340,11 @@
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DriverCar" EntityType="Self.DriverCar" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DriverLicense" EntityType="Self.DriverLicense" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inspector" EntityType="Self.Inspector" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobName" EntityType="Self.JobName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="License" EntityType="Self.License" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenseCategory" EntityType="Self.LicenseCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LicenseHistory" EntityType="Self.LicenseHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ManufacturerCarModel" EntityType="Self.ManufacturerCarModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
@@ -364,13 +378,9 @@
             <End Role="Driver" EntitySet="Driver" />
             <End Role="DriverCar" EntitySet="DriverCar" />
           </AssociationSet>
-          <AssociationSet Name="FK_DriverLicense_Driver" Association="Self.FK_DriverLicense_Driver">
+          <AssociationSet Name="FK_License_Driver" Association="Self.FK_License_Driver">
             <End Role="Driver" EntitySet="Driver" />
-            <End Role="DriverLicense" EntitySet="DriverLicense" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DriverLicense_License" Association="Self.FK_DriverLicense_License">
             <End Role="License" EntitySet="License" />
-            <End Role="DriverLicense" EntitySet="DriverLicense" />
           </AssociationSet>
           <AssociationSet Name="FK_License_Status" Association="Self.FK_License_Status">
             <End Role="Status" EntitySet="Status" />
@@ -383,6 +393,14 @@
           <AssociationSet Name="FK_LicenseCategory_License" Association="Self.FK_LicenseCategory_License">
             <End Role="License" EntitySet="License" />
             <End Role="LicenseCategory" EntitySet="LicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LicenseHistory_License" Association="Self.FK_LicenseHistory_License">
+            <End Role="License" EntitySet="License" />
+            <End Role="LicenseHistory" EntitySet="LicenseHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LicenseHistory_Status" Association="Self.FK_LicenseHistory_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LicenseHistory" EntitySet="LicenseHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_ManufacturerCarModel_CarModel" Association="Self.FK_ManufacturerCarModel_CarModel">
             <End Role="CarModel" EntitySet="CarModel" />
@@ -464,7 +482,7 @@
           <NavigationProperty Name="Company" Relationship="Self.FK_Driver_Company" FromRole="Driver" ToRole="Company" />
           <NavigationProperty Name="JobName" Relationship="Self.FK_Driver_JobName" FromRole="Driver" ToRole="JobName" />
           <NavigationProperty Name="DriverCar" Relationship="Self.FK_DriverCar_Driver" FromRole="Driver" ToRole="DriverCar" />
-          <NavigationProperty Name="DriverLicense" Relationship="Self.FK_DriverLicense_Driver" FromRole="Driver" ToRole="DriverLicense" />
+          <NavigationProperty Name="License" Relationship="Self.FK_License_Driver" FromRole="Driver" ToRole="License" />
         </EntityType>
         <EntityType Name="DriverCar">
           <Key>
@@ -475,16 +493,6 @@
           <Property Name="CarID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Self.FK_DriverCar_Car" FromRole="DriverCar" ToRole="Car" />
           <NavigationProperty Name="Driver" Relationship="Self.FK_DriverCar_Driver" FromRole="DriverCar" ToRole="Driver" />
-        </EntityType>
-        <EntityType Name="DriverLicense">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DriverID" Type="Int32" Nullable="false" />
-          <Property Name="LicenseID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Driver" Relationship="Self.FK_DriverLicense_Driver" FromRole="DriverLicense" ToRole="Driver" />
-          <NavigationProperty Name="License" Relationship="Self.FK_DriverLicense_License" FromRole="DriverLicense" ToRole="License" />
         </EntityType>
         <EntityType Name="Inspector">
           <Key>
@@ -513,9 +521,11 @@
           <Property Name="LicenceSeries" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LicenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DriverLicense" Relationship="Self.FK_DriverLicense_License" FromRole="License" ToRole="DriverLicense" />
+          <Property Name="DriverID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Driver" Relationship="Self.FK_License_Driver" FromRole="License" ToRole="Driver" />
           <NavigationProperty Name="Status" Relationship="Self.FK_License_Status" FromRole="License" ToRole="Status" />
           <NavigationProperty Name="LicenseCategory" Relationship="Self.FK_LicenseCategory_License" FromRole="License" ToRole="LicenseCategory" />
+          <NavigationProperty Name="LicenseHistory" Relationship="Self.FK_LicenseHistory_License" FromRole="License" ToRole="LicenseHistory" />
         </EntityType>
         <EntityType Name="LicenseCategory">
           <Key>
@@ -526,6 +536,17 @@
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="Self.FK_LicenseCategory_Category" FromRole="LicenseCategory" ToRole="Category" />
           <NavigationProperty Name="License" Relationship="Self.FK_LicenseCategory_License" FromRole="LicenseCategory" ToRole="License" />
+        </EntityType>
+        <EntityType Name="LicenseHistory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LicenseID" Type="Int32" Nullable="false" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="License" Relationship="Self.FK_LicenseHistory_License" FromRole="LicenseHistory" ToRole="License" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_LicenseHistory_Status" FromRole="LicenseHistory" ToRole="Status" />
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
@@ -553,6 +574,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="License" Relationship="Self.FK_License_Status" FromRole="Status" ToRole="License" />
+          <NavigationProperty Name="LicenseHistory" Relationship="Self.FK_LicenseHistory_Status" FromRole="Status" ToRole="LicenseHistory" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -680,27 +702,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DriverLicense_Driver">
+        <Association Name="FK_License_Driver">
           <End Role="Driver" Type="Self.Driver" Multiplicity="1" />
-          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
+          <End Role="License" Type="Self.License" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Driver">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="DriverLicense">
+            <Dependent Role="License">
               <PropertyRef Name="DriverID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DriverLicense_License">
-          <End Role="License" Type="Self.License" Multiplicity="1" />
-          <End Role="DriverLicense" Type="Self.DriverLicense" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="License">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DriverLicense">
-              <PropertyRef Name="LicenseID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -728,6 +738,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LicenseHistory_License">
+          <End Role="License" Type="Self.License" Multiplicity="1" />
+          <End Role="LicenseHistory" Type="Self.LicenseHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="License">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LicenseHistory">
+              <PropertyRef Name="LicenseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LicenseHistory_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="LicenseHistory" Type="Self.LicenseHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LicenseHistory">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ManufacturerCarModel_Manufacturer">
           <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
           <End Role="ManufacturerCarModel" Type="Self.ManufacturerCarModel" Multiplicity="*" />
@@ -747,11 +781,11 @@
           <EntitySet Name="Company" EntityType="Self.Company" />
           <EntitySet Name="Driver" EntityType="Self.Driver" />
           <EntitySet Name="DriverCar" EntityType="Self.DriverCar" />
-          <EntitySet Name="DriverLicense" EntityType="Self.DriverLicense" />
           <EntitySet Name="Inspector" EntityType="Self.Inspector" />
           <EntitySet Name="JobName" EntityType="Self.JobName" />
           <EntitySet Name="License" EntityType="Self.License" />
           <EntitySet Name="LicenseCategory" EntityType="Self.LicenseCategory" />
+          <EntitySet Name="LicenseHistory" EntityType="Self.LicenseHistory" />
           <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
           <EntitySet Name="ManufacturerCarModel" EntityType="Self.ManufacturerCarModel" />
           <EntitySet Name="Status" EntityType="Self.Status" />
@@ -793,13 +827,9 @@
             <End Role="Driver" EntitySet="Driver" />
             <End Role="DriverCar" EntitySet="DriverCar" />
           </AssociationSet>
-          <AssociationSet Name="FK_DriverLicense_Driver" Association="Self.FK_DriverLicense_Driver">
+          <AssociationSet Name="FK_License_Driver" Association="Self.FK_License_Driver">
             <End Role="Driver" EntitySet="Driver" />
-            <End Role="DriverLicense" EntitySet="DriverLicense" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DriverLicense_License" Association="Self.FK_DriverLicense_License">
             <End Role="License" EntitySet="License" />
-            <End Role="DriverLicense" EntitySet="DriverLicense" />
           </AssociationSet>
           <AssociationSet Name="FK_License_Status" Association="Self.FK_License_Status">
             <End Role="Status" EntitySet="Status" />
@@ -808,6 +838,14 @@
           <AssociationSet Name="FK_LicenseCategory_License" Association="Self.FK_LicenseCategory_License">
             <End Role="License" EntitySet="License" />
             <End Role="LicenseCategory" EntitySet="LicenseCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LicenseHistory_License" Association="Self.FK_LicenseHistory_License">
+            <End Role="License" EntitySet="License" />
+            <End Role="LicenseHistory" EntitySet="LicenseHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LicenseHistory_Status" Association="Self.FK_LicenseHistory_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="LicenseHistory" EntitySet="LicenseHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_ManufacturerCarModel_Manufacturer" Association="Self.FK_ManufacturerCarModel_Manufacturer">
             <End Role="Manufacturer" EntitySet="Manufacturer" />
@@ -890,15 +928,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DriverLicense">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.DriverLicense">
-              <MappingFragment StoreEntitySet="DriverLicense">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
-                <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Inspector">
             <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Inspector">
               <MappingFragment StoreEntitySet="Inspector">
@@ -926,6 +955,7 @@
                 <ScalarProperty Name="LicenceSeries" ColumnName="LicenceSeries" />
                 <ScalarProperty Name="LicenceNumber" ColumnName="LicenceNumber" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="DriverID" ColumnName="DriverID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -935,6 +965,16 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LicenseHistory">
+            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.LicenseHistory">
+              <MappingFragment StoreEntitySet="LicenseHistory">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -31,11 +31,11 @@ namespace GIBDD_Gorlanov_619
         public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<Driver> Driver { get; set; }
         public virtual DbSet<DriverCar> DriverCar { get; set; }
-        public virtual DbSet<DriverLicense> DriverLicense { get; set; }
         public virtual DbSet<Inspector> Inspector { get; set; }
         public virtual DbSet<JobName> JobName { get; set; }
         public virtual DbSet<License> License { get; set; }
         public virtual DbSet<LicenseCategory> LicenseCategory { get; set; }
+        public virtual DbSet<LicenseHistory> LicenseHistory { get; set; }
         public virtual DbSet<Manufacturer> Manufacturer { get; set; }
         public virtual DbSet<ManufacturerCarModel> ManufacturerCarModel { get; set; }
         public virtual DbSet<Status> Status { get; set; }

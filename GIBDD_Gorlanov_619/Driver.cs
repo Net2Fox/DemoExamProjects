@@ -18,7 +18,7 @@ namespace GIBDD_Gorlanov_619
         public Driver()
         {
             this.DriverCar = new HashSet<DriverCar>();
-            this.DriverLicense = new HashSet<DriverLicense>();
+            this.License = new HashSet<License>();
         }
     
         public int ID { get; set; }
@@ -43,6 +43,6 @@ namespace GIBDD_Gorlanov_619
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DriverCar> DriverCar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DriverLicense> DriverLicense { get; set; }
+        public virtual ICollection<License> License { get; set; }
     }
 }

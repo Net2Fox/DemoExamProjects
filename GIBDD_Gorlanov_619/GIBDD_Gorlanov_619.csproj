@@ -82,9 +82,6 @@
     <Compile Include="DriverCar.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="DriverLicense.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Inspector.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -95,6 +92,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="LicenseCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseHistory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Manufacturer.cs">
@@ -121,6 +121,12 @@
     <Compile Include="Pages\AddDriverPage.xaml.cs">
       <DependentUpon>AddDriverPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AdditionalInfoPage.xaml.cs">
+      <DependentUpon>AdditionalInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AddLicensePage.xaml.cs">
+      <DependentUpon>AddLicensePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Status.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -144,6 +150,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddDriverPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdditionalInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddLicensePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

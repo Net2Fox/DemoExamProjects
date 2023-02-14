@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d9c69477102f42f0a546d52440b0ddf7" Name="Diagram1">
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Car" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.CarModel" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Category" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Company" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Driver" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.DriverCar" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.DriverLicense" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Inspector" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.JobName" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.License" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.LicenseCategory" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Manufacturer" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.ManufacturerCarModel" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Status" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GIBDD_GorlanovModel.TypeOfDrive" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
+      <Diagram DiagramId="c93b7a8dc1ab435da8fde691ff79289f" Name="Diagram1">
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Car" Width="1.5" PointX="8" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.CarModel" Width="1.5" PointX="5.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Category" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Company" Width="1.5" PointX="1.5" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Driver" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.DriverCar" Width="1.5" PointX="10.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Inspector" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.JobName" Width="1.5" PointX="1.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.License" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.LicenseCategory" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.LicenseHistory" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Manufacturer" Width="1.5" PointX="5.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.ManufacturerCarModel" Width="1.5" PointX="11" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.Status" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GIBDD_GorlanovModel.TypeOfDrive" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_Car_CarModel" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_Car_Manufacturer" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_Car_TypeOfDrive" ManuallyRouted="false" />
@@ -30,10 +30,11 @@
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_Driver_Company" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_Driver_JobName" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_DriverCar_Driver" ManuallyRouted="false" />
-        <AssociationConnector Association="GIBDD_GorlanovModel.FK_DriverLicense_Driver" ManuallyRouted="false" />
-        <AssociationConnector Association="GIBDD_GorlanovModel.FK_DriverLicense_License" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDD_GorlanovModel.FK_License_Driver" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_License_Status" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_LicenseCategory_License" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDD_GorlanovModel.FK_LicenseHistory_License" ManuallyRouted="false" />
+        <AssociationConnector Association="GIBDD_GorlanovModel.FK_LicenseHistory_Status" ManuallyRouted="false" />
         <AssociationConnector Association="GIBDD_GorlanovModel.FK_ManufacturerCarModel_Manufacturer" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

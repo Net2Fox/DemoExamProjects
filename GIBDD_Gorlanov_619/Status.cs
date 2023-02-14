@@ -18,6 +18,7 @@ namespace GIBDD_Gorlanov_619
         public Status()
         {
             this.License = new HashSet<License>();
+            this.LicenseHistory = new HashSet<LicenseHistory>();
         }
     
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace GIBDD_Gorlanov_619
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<License> License { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LicenseHistory> LicenseHistory { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace GIBDD_Gorlanov_619
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public License()
         {
-            this.DriverLicense = new HashSet<DriverLicense>();
             this.LicenseCategory = new HashSet<LicenseCategory>();
+            this.LicenseHistory = new HashSet<LicenseHistory>();
         }
     
         public int ID { get; set; }
@@ -27,11 +27,13 @@ namespace GIBDD_Gorlanov_619
         public string LicenceSeries { get; set; }
         public string LicenceNumber { get; set; }
         public int StatusID { get; set; }
+        public int DriverID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DriverLicense> DriverLicense { get; set; }
+        public virtual Driver Driver { get; set; }
         public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LicenseCategory> LicenseCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LicenseHistory> LicenseHistory { get; set; }
     }
 }

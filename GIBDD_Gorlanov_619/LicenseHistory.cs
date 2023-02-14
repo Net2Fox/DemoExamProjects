@@ -12,13 +12,14 @@ namespace GIBDD_Gorlanov_619
     using System;
     using System.Collections.Generic;
     
-    public partial class DriverLicense
+    public partial class LicenseHistory
     {
         public int ID { get; set; }
-        public int DriverID { get; set; }
         public int LicenseID { get; set; }
+        public int StatusID { get; set; }
+        public string Description { get; set; }
     
-        public virtual Driver Driver { get; set; }
         public virtual License License { get; set; }
+        public virtual Status Status { get; set; }
     }
 }
