@@ -9,8 +9,8 @@
     <Grid>
         <StackPanel VerticalAlignment="Center">
             <TextBlock Text="Введите код для входа:" TextAlignment="Center"/>
-            <TextBox x:Name="CodeTextBox" Margin="0,20,0,0"/>
-            <Button x:Name="ConfirmButton" Content="Подтвердить" Margin="0,20,0,0" Click="ConfirmButton_Click"/>
+            <TextBox x:Name="CodeTextBox" Margin="10,20,10,0"/>
+            <Button x:Name="ConfirmButton" Content="Подтвердить" Margin="10,20,10,0" Click="ConfirmButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

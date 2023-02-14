@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GIBDD_Gorlanov_619.Pages;
 
-namespace GIBDD_Gorlanov_619
+namespace GIBDD_Gorlanov_619.Windows
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
