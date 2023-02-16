@@ -20,11 +20,11 @@
                 <TextBlock Text="Номер*:" Margin="0,10,0,0"/>
                 <TextBox Name="NumberTextBox" Text="{Binding License.LicenceNumber}"/>
                 <TextBlock Text="Дата выдачи*:" Margin="0,10,0,0"/>
-                <DatePicker Name="LicenseDateTextBox" SelectedDate="{Binding  License.LicenseDate}" DisplayDateStart="2000-01-01" DisplayDateEnd="2199-01-01"/>
+                <DatePicker Name="LicenseDateTextBox" SelectedDate="{Binding  License.LicenseDate}"/>
                 <TextBlock Text="Дата окончания*:" Margin="0,10,0,0"/>
                 <DatePicker Name="ExpireDateTextBox" SelectedDate="{Binding  License.ExpireDate}"/>
                 <TextBlock Text="Статус*:" Margin="0,10,0,0"/>
-                <ComboBox Name="StatusComboBox" ItemsSource="{Binding Statuses}" SelectedItem="{Binding License.Status}" SelectionChanged="StatusComboBox_SelectionChanged">
+                <ComboBox Name="StatusComboBox" ItemsSource="{Binding Statuses}" SelectedItem="{Binding LicenseStatus}" SelectionChanged="StatusComboBox_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}"/>

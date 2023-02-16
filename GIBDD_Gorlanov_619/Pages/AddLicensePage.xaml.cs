@@ -22,9 +22,13 @@ namespace GIBDD_Gorlanov_619.Pages
     {
         public bool IsEdit { get; set; }
 
+        private bool IsStatusChanged = false;
+
         public List<Status> Statuses { get; set; }
 
         public License License { get; set; }
+
+        public Status LicenseStatus { get; set; }
 
         private Driver _driver;
 
@@ -36,11 +40,13 @@ namespace GIBDD_Gorlanov_619.Pages
             if (license != null)
             {
                 License = license;
+                LicenseStatus = License.Status;
                 IsEdit = true;
             }
             else
             {
                 License = new License();
+                License.Driver = _driver;
                 IsEdit = false;
             }
             Statuses = Core.GetContext().Status.ToList();
@@ -48,6 +54,7 @@ namespace GIBDD_Gorlanov_619.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            License.Status = LicenseStatus;
             if (IsEdit == false)
             {
                 Core.GetContext().License.Add(License);
@@ -56,6 +63,12 @@ namespace GIBDD_Gorlanov_619.Pages
             }
             else
             {
+                if (IsStatusChanged == true)
+                {
+                    MessageBox.Show("При смене статуса необходимо написать комментарий - причину изменения", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
                 var msg = MessageBox.Show("Вы точно хотите сохранить изменения?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (msg == MessageBoxResult.Yes)
                 {
@@ -74,7 +87,16 @@ namespace GIBDD_Gorlanov_619.Pages
                 if (activeLicense != null)
                 {
                     MessageBox.Show("У данного водителя уже есть активное ВУ!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    StatusComboBox.SelectedItem = null;
+                    StatusComboBox.SelectedItem = License.Status;
+                    return;
+                }
+            }
+
+            if (IsEdit == true)
+            {
+                if (License.Status != LicenseStatus)
+                {
+                    MessageBox.Show("При смене статуса необходимо написать комментарий - причину изменения", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
             }
