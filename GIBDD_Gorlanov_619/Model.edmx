@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище GIBDD_GorlanovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Gorlanov_GIBDDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="ID" />
@@ -333,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище GIBDD_GorlanovModelContainer">
+        <EntityContainer Name="Хранилище Gorlanov_GIBDDModelContainer">
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarModel" EntityType="Self.CarModel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -415,7 +415,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="GIBDD_GorlanovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Gorlanov_GIBDDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Car">
           <Key>
             <PropertyRef Name="ID" />
@@ -857,9 +857,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище GIBDD_GorlanovModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Gorlanov_GIBDDModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Car">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Car">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Car">
               <MappingFragment StoreEntitySet="Car">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="VIN" ColumnName="VIN" />
@@ -874,7 +874,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CarModel">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.CarModel">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.CarModel">
               <MappingFragment StoreEntitySet="CarModel">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -882,7 +882,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Category">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -890,7 +890,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Company">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Company">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -898,7 +898,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Driver">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Driver">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Driver">
               <MappingFragment StoreEntitySet="Driver">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -920,7 +920,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DriverCar">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.DriverCar">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.DriverCar">
               <MappingFragment StoreEntitySet="DriverCar">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DriverID" ColumnName="DriverID" />
@@ -929,7 +929,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inspector">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Inspector">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Inspector">
               <MappingFragment StoreEntitySet="Inspector">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -939,7 +939,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobName">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.JobName">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.JobName">
               <MappingFragment StoreEntitySet="JobName">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -947,7 +947,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="License">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.License">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.License">
               <MappingFragment StoreEntitySet="License">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LicenseDate" ColumnName="LicenseDate" />
@@ -960,7 +960,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LicenseCategory">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.LicenseCategory">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.LicenseCategory">
               <MappingFragment StoreEntitySet="LicenseCategory">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
@@ -969,7 +969,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LicenseHistory">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.LicenseHistory">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.LicenseHistory">
               <MappingFragment StoreEntitySet="LicenseHistory">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
@@ -979,7 +979,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manufacturer">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Manufacturer">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Manufacturer">
               <MappingFragment StoreEntitySet="Manufacturer">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -987,7 +987,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ManufacturerCarModel">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.ManufacturerCarModel">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.ManufacturerCarModel">
               <MappingFragment StoreEntitySet="ManufacturerCarModel">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CarModelID" ColumnName="CarModelID" />
@@ -996,7 +996,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.Status">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.Status">
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1004,7 +1004,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.sysdiagrams">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1015,7 +1015,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeOfDrive">
-            <EntityTypeMapping TypeName="GIBDD_GorlanovModel.TypeOfDrive">
+            <EntityTypeMapping TypeName="Gorlanov_GIBDDModel.TypeOfDrive">
               <MappingFragment StoreEntitySet="TypeOfDrive">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

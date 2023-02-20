@@ -97,7 +97,14 @@ namespace GIBDD_Gorlanov_619.Pages
             {
                 NavigationService.Navigate(new AddDriverPage(DriverListView.SelectedItem as Driver));
             }
-                
+        }
+
+        private void LicensesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DriverListView.SelectedItem != null)
+            {
+                NavigationService.Navigate(new LicensePage(DriverListView.SelectedItem as Driver));
+            }
         }
     }
 }

@@ -117,10 +117,5 @@ namespace GIBDD_Gorlanov_619.Pages
             }
             NavigationService.GoBack();
         }
-
-        private void AdditionalInfoButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new AdditionalInfoPage(Driver));
-        }
     }
 }

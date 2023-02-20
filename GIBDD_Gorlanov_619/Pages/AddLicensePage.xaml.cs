@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GIBDD_Gorlanov_619.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,13 +23,15 @@ namespace GIBDD_Gorlanov_619.Pages
     {
         public bool IsEdit { get; set; }
 
-        private bool IsStatusChanged = false;
-
         public List<Status> Statuses { get; set; }
 
         public License License { get; set; }
 
         public Status LicenseStatus { get; set; }
+
+        private bool _isStatusChaged = false;
+
+        private string _description;
 
         private Driver _driver;
 
@@ -63,15 +66,17 @@ namespace GIBDD_Gorlanov_619.Pages
             }
             else
             {
-                if (IsStatusChanged == true)
-                {
-                    MessageBox.Show("При смене статуса необходимо написать комментарий - причину изменения", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
                 var msg = MessageBox.Show("Вы точно хотите сохранить изменения?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (msg == MessageBoxResult.Yes)
                 {
+                    if(_isStatusChaged == true)
+                    {
+                        LicenseHistory licenseHistory = new LicenseHistory();
+                        licenseHistory.License = License;
+                        licenseHistory.Status = LicenseStatus;
+                        licenseHistory.Description = _description;
+                        Core.GetContext().LicenseHistory.Add(licenseHistory);
+                    }
                     Core.GetContext().SaveChanges();
                     MessageBox.Show("Изменения были успешно сохранены!", "Успешно", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -97,6 +102,14 @@ namespace GIBDD_Gorlanov_619.Pages
                 if (License.Status != LicenseStatus)
                 {
                     MessageBox.Show("При смене статуса необходимо написать комментарий - причину изменения", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    ChangeStatusWindow changeStatusWindow = new ChangeStatusWindow();
+                    changeStatusWindow.Owner = Window.GetWindow(this);
+                    if(changeStatusWindow.ShowDialog() == true)
+                    {
+                        _isStatusChaged = true;
+                        _description = changeStatusWindow.Description;
+                    }
+                    
                     return;
                 }
             }

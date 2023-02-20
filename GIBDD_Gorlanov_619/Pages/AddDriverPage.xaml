@@ -5,16 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GIBDD_Gorlanov_619.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddDriverPage">
+      d:DesignHeight="450" d:DesignWidth="800">
+    <Page.Style>
+        <Style TargetType="Page">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEdit}" Value="False">
+                    <Setter Property="Title" Value="Добавление водителя"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsEdit}" Value="True">
+                    <Setter Property="Title" Value="Изменение водителя"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Style>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0" HorizontalAlignment="Center">
-            <StackPanel Margin="10,0,0,0">
+        <WrapPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
                 <TextBlock Text="Фамилия*:" Margin="0,10,0,0"/>
                 <TextBox Name="SurnameTextBox" Text="{Binding Driver.Surname}"/>
                 <TextBlock Text="Имя*:" Margin="0,10,0,0"/>
@@ -74,17 +85,5 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="AdditionalInfoButton" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0" Content="Посмотреть доп. информацию" Click="AdditionalInfoButton_Click">
-            <Button.Style>
-                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsEdit}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-        
     </Grid>
 </Page>

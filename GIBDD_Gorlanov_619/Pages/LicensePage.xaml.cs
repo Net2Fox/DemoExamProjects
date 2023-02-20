@@ -17,9 +17,9 @@ using System.ComponentModel;
 namespace GIBDD_Gorlanov_619.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для AdditionalInfoPage.xaml
+    /// Логика взаимодействия для LicensePage.xaml
     /// </summary>
-    public partial class AdditionalInfoPage : Page, INotifyPropertyChanged
+    public partial class LicensePage : Page, INotifyPropertyChanged
     {
 
         private List<License> _licenses;
@@ -41,7 +41,7 @@ namespace GIBDD_Gorlanov_619.Pages
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public AdditionalInfoPage(Driver driver)
+        public LicensePage(Driver driver)
         {
             InitializeComponent();
             _driver = driver;
@@ -62,6 +62,14 @@ namespace GIBDD_Gorlanov_619.Pages
         {
             Licenses = Core.GetContext().License.ToList();
             Licenses = Licenses.Where(l => l.Driver == _driver).ToList();
+        }
+
+        private void LicenseHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(LicenseListView.SelectedItem != null)
+            {
+                NavigationService.Navigate(new LicenseHistoryPage(LicenseListView.SelectedItem as License));
+            }
         }
     }
 }

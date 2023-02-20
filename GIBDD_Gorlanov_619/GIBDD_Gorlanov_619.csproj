@@ -121,11 +121,14 @@
     <Compile Include="Pages\AddDriverPage.xaml.cs">
       <DependentUpon>AddDriverPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AdditionalInfoPage.xaml.cs">
-      <DependentUpon>AdditionalInfoPage.xaml</DependentUpon>
+    <Compile Include="Pages\LicensePage.xaml.cs">
+      <DependentUpon>LicensePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AddLicensePage.xaml.cs">
       <DependentUpon>AddLicensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LicenseHistoryPage.xaml.cs">
+      <DependentUpon>LicenseHistoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Status.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="TypeOfDrive.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ChangeStatusWindow.xaml.cs">
+      <DependentUpon>ChangeStatusWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CodeWindow.xaml.cs">
       <DependentUpon>CodeWindow.xaml</DependentUpon>
@@ -153,11 +159,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\AdditionalInfoPage.xaml">
+    <Page Include="Pages\LicensePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddLicensePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LicenseHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangeStatusWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

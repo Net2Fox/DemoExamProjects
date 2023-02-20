@@ -6,12 +6,12 @@
       xmlns:local="clr-namespace:GIBDD_Gorlanov_619.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LoginPage">
+      Title="Авторизация">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150*"/>
-            <RowDefinition Height="150*"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Source="/Images/gibdd_logo.png"/>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="150">
