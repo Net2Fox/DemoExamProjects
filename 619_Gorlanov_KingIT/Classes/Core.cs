@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace _619_Gorlanov_KingIT.Classes
+﻿namespace _619_Gorlanov_KingIT.Classes
 {
     internal class Core
     {
